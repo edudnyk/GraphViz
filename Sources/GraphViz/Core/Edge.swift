@@ -7,14 +7,21 @@ public struct Edge: Hashable {
     public var to: Node.ID
 
     public enum Direction: String, Hashable {
-        case none = "--"
-        case forward = "->"
-        case backward = "<-"
-        case both = "<->"
+        case none
+        case forward
+        case backward
+        case both
     }
 
     /// > Sets the edge type for drawing arrowheads (not for ranking purposes).
-    public var direction: Direction?
+    public var direction: Direction? {
+        get {
+            attributes[keyPath: \.direction]
+        }
+        set {
+            attributes[keyPath: \.direction] = newValue
+        }
+    }
 
     public var attributes: Attributes = .init()
 
@@ -25,7 +32,7 @@ public struct Edge: Hashable {
     public init(from: Node.ID, to: Node.ID, direction: Direction? = nil) {
         self.from = from
         self.to = to
-        self.direction = direction
+        attributes[keyPath: \.direction] = direction
     }
 
     public subscript<T>(dynamicMember member: WritableKeyPath<Edge.Attributes, T>) -> T {
@@ -388,11 +395,18 @@ extension Edge {
         // MARK: FDP, neato
 
         /**
-          len
-          Preferred edge length, in inches.
-          */
-         @Attribute("len")
-         public var preferredEdgeLength: Double?
+         len
+         Preferred edge length, in inches.
+         */
+        @Attribute("len")
+        public var preferredEdgeLength: Double?
+        
+        /**
+         len
+         Preferred edge length, in inches.
+         */
+        @Attribute("dir")
+        var direction: Direction?
     }
 }
 
@@ -443,7 +457,8 @@ extension Edge.Attributes {
             _tailLabel,
             _minimumRankDifference,
             _guideBoxLocation,
-            _preferredEdgeLength
+            _preferredEdgeLength,
+            _direction
         ]
     }
 

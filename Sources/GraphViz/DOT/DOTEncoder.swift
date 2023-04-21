@@ -113,7 +113,7 @@ public struct DOTEncoder {
     func encode(_ edge: Edge, in graph: Graph) -> String {
         let components: [String] = [
             escape(edge.from),
-            (edge.direction ?? (graph.directed ? .forward : .none)).rawValue,
+            "->",
             escape(edge.to),
             encode(edge.attributes, in: graph)
         ].compactMap{ $0 }

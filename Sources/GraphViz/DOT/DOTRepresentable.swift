@@ -248,3 +248,5 @@ extension Edge.Port: DOTRepresentable {}
 
 extension Edge.Style: DOTRepresentable {}
 
+extension Edge.Direction: DOTRepresentable {}
+
