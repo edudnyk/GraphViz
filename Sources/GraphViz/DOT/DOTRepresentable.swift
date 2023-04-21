@@ -229,7 +229,18 @@ extension Node.Style: DOTRepresentable {
 
 extension Edge.Arrow: DOTRepresentable {
     func representation(in graph: Graph) -> String? {
-        fatalError("unimplemented") // FIXME
+        var result = [String]()
+        if let side = side {
+            result.append(side.rawValue)
+        }
+        if let open = self.open, open {
+            result.append("o")
+        }
+        if let shape = shape {
+            result.append(shape.rawValue)
+        }
+        guard !result.isEmpty else { return nil }
+        return result.joined()
     }
 }
 

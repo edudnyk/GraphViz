@@ -66,6 +66,8 @@ extension Edge {
         public var shape: Shape?
         public var open: Bool?
         public var side: Side?
+
+        public init() {}
     }
 
     public enum Port: String {
