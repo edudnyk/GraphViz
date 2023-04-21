@@ -185,6 +185,14 @@ extension Subgraph {
         /// > The font color for object labels.
         @Attribute("fontcolor")
         public var textColor: Color?
+        
+        /// Text label attached to objects.
+        @Attribute("label")
+        public var label: String?
+        
+        // Tooltip (mouse hover text) attached to the node, edge, cluster, or graph. For cmap, svg only.
+        @Attribute("tooltip")
+        public var tooltip: String?
 
         /// > If true, allows edge labels to be less constrained in position. In particular, it may appear on top of other edges
         @Attribute("labelfloat")
@@ -282,7 +290,9 @@ extension Subgraph.Attributes {
             _head,
             _tail,
             _rank,
-            _area
+            _area,
+            _tooltip,
+            _label
         ]
     }
 

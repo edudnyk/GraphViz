@@ -373,6 +373,10 @@ extension Node {
         /// 1.0    >0    patchwork only
         @Attribute("area")
         public var area: Double?
+
+        // Tooltip (mouse hover text) attached to the node, edge, cluster, or graph. For cmap, svg only.
+        @Attribute("tooltip")
+        public var tooltip: String?
     }
 }
 
@@ -409,7 +413,8 @@ extension Node.Attributes {
             _pin,
             _position,
             _root,
-            _area
+            _area,
+            _tooltip
         ]
     }
 
